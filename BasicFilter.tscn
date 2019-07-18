@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Line1.gd" type="Script" id=1]
+[ext_resource path="res://NoteArea.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.0196078, 0.054902, 0.905882, 1 )
+
+[sub_resource type="CubeMesh" id=6]
+material = SubResource( 5 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Player" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 0.647661, -0.484991, 0.587638, 0, 0.771251, 0.636531, -0.761929, -0.412256, 0.499509, 4.45971, 6.70942, -1.18494 )
+
+[node name="Viewport" type="Viewport" parent="."]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0565, 0, -4.67665 )
+physics_material_override = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Line1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03839, 0.0137509, -4.99569 )
+script = ExtResource( 1 )
+
+[node name="Area" type="Area" parent="Line1"]
+collision_mask = 3
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Line1/Area"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Line1"]
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="Line2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
+
+[node name="Line3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5 )
